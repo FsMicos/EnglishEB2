@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snakes & Ladders - English Quiz Game</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Game Board Section -->
+        <div class="game-board-section">
+            <div class="game-board">
+                <div class="board-placeholder" id="gameBoard">
+                    <!-- Game board image will be loaded here -->
+                    Game Board Preview
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Section -->
+        <div class="menu-section">
+            <!-- Game Title -->
+            <div class="game-logo">
+                <h1 class="game-title">SNAKES & LADDERS</h1>
+                <p class="game-subtitle">English Quiz Adventure</p>
+            </div>
+
+            <!-- Host Name Input -->
+            <div class="host-section">
+                <label for="hostName" class="host-label">Host name:</label>
+                <input 
+                    type="text" 
+                    id="hostName" 
+                    class="host-input" 
+                    placeholder="Enter your nickname"
+                    maxlength="20"
+                    autocomplete="off"
+                    aria-label="Enter your nickname for the game"
+                >
+            </div>
+
+            <!-- Player Color Selection -->
+            <div class="player-colors" role="radiogroup" aria-label="Choose your player color">
+                <div class="color-option blue" data-color="blue" role="radio" tabindex="0" aria-label="Blue player"></div>
+                <div class="color-option green selected" data-color="green" role="radio" tabindex="0" aria-label="Green player"></div>
+                <div class="color-option yellow" data-color="yellow" role="radio" tabindex="0" aria-label="Yellow player"></div>
+                <div class="color-option pink" data-color="pink" role="radio" tabindex="0" aria-label="Pink player"></div>
+            </div>
+
+            <!-- Game Action Buttons -->
+            <div class="game-buttons">
+                <button class="game-btn btn-play" id="playBtn" aria-label="Start a new game">
+                    <span>Play</span>
+                </button>
+                <button class="game-btn btn-continue" id="continueBtn" aria-label="Continue previous game">
+                    <span>Continue</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sound Controls -->
+    <div class="sound-controls">
+        <div class="volume-control">
+            <button class="volume-btn" id="soundDown" aria-label="Decrease sound volume">
+                <span>🔉</span>
+            </button>
+            <div class="volume-display" id="soundVolume">100</div>
+            <button class="volume-btn" id="soundUp" aria-label="Increase sound volume">
+                <span>🔊</span>
+            </button>
+        </div>
+        <div class="volume-control">
+            <button class="volume-btn" id="musicDown" aria-label="Decrease music volume">
+                <span>🎵</span>
+            </button>
+            <div class="volume-display" id="musicVolume">100</div>
+            <button class="volume-btn" id="musicUp" aria-label="Increase music volume">
+                <span>�</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Help Button -->
+    <button class="help-btn" id="helpBtn" aria-label="Show game instructions">
+        <span>?</span>
+    </button>
+
+    <!-- Hidden elements for preloading -->
+    <div style="display: none;">
+        <img id="boardImage" src="assets/images/game-board.png" alt="Game Board" onload="loadGameBoard()">
+        <img id="logoImage" src="assets/images/logo.png" alt="Game Logo" onload="loadGameLogo()">
+    </div>
+
+    <script src="js/game-state.js"></script>
+    <script src="js/main-screen.js"></script>
+</body>
+</html>

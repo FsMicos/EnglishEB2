@@ -1,0 +1,130 @@
+/* ================================
+   RETRO QUIZ GAME - CSS VARIABLES
+   Authentic 80s/90s Retro Aesthetic
+   ================================ */
+
+:root {
+  /* Neon Color Palette - Vibrant & Balanced */
+  --neon-blue: #00FFFF;
+  --neon-blue-dim: #00AACC;
+  --neon-blue-dark: #004455;
+  --neon-blue-glow: rgba(0, 255, 255, 0.8);
+  
+  --neon-purple: #FF00FF;
+  --neon-purple-dim: #CC00CC;
+  --neon-purple-dark: #550055;
+  --neon-purple-glow: rgba(255, 0, 255, 0.8);
+  
+  --neon-yellow: #FFFF00;
+  --neon-yellow-dim: #CCCC00;
+  --neon-yellow-dark: #555500;
+  --neon-yellow-glow: rgba(255, 255, 0, 0.8);
+  
+  --neon-pink: #FF1493;
+  --neon-orange: #FF9900;
+  --neon-lime: #CCFF00;
+  --neon-white: #FFFFFF;
+  --neon-white-dim: #DDDDDD;
+  
+  /* Button Colors - Neon Interactive Elements */
+  --button-primary-bg: #1A1A40;
+  --button-primary-border: #00FFFF;
+  --button-primary-text: #FFFFFF;
+  --button-primary-glow: rgba(0, 255, 255, 0.8);
+  
+  --button-secondary-bg: #1A1A40;
+  --button-secondary-border: #FF00FF;
+  --button-secondary-text: #FFFFFF;
+  --button-secondary-glow: rgba(255, 0, 255, 0.8);
+  
+  --button-highlight: #FFFFFF;
+  --button-shadow: #000000;
+  
+  /* UI Background Colors - Dark Theme for Neon Pop */
+  --background-dark: #0A0A1A;
+  --background-medium: #101030;
+  --background-light: #1A1A40;
+  --background-gradient: linear-gradient(135deg, #0A0A1A 0%, #101030 50%, #1A1A40 100%);
+  
+  /* Text Colors - High Contrast with Neon Effects */
+  --text-primary: #FFFFFF;
+  --text-secondary: #DDDDDD;
+  --text-accent: #FFFF00;
+  --text-warning: #FF9900;
+  --text-dark: #000000;
+  --text-neon-glow: #00FFFF;
+  
+  /* Player Colors - Neon Game Pieces */
+  --player-blue: #00FFFF;
+  --player-green: #00FF66;
+  --player-yellow: #FFFF00;
+  --player-pink: #FF00FF;
+  --player-orange: #FF9900;
+  
+  /* Shadow and Border Effects - Retro Style */
+  --shadow-retro: 0 4px 0 var(--button-shadow), 0 8px 12px rgba(0, 0, 0, 0.4);
+  --shadow-retro-hover: 0 2px 0 var(--button-shadow), 0 4px 8px rgba(0, 0, 0, 0.5);
+  --shadow-retro-active: 0 1px 0 var(--button-shadow), 0 2px 4px rgba(0, 0, 0, 0.3);
+  --border-retro: 3px solid var(--button-highlight);
+  --border-radius-retro: 8px;
+  
+  /* Typography - Authentic Retro Fonts */
+  --font-family-retro: 'Orbitron', 'Audiowide', 'Press Start 2P', monospace;
+  --font-family-display: 'Bungee', 'Fredoka One', 'Righteous', cursive;
+  --font-family-body: 'Exo 2', 'Rajdhani', sans-serif;
+  
+  --font-size-xs: 12px;
+  --font-size-sm: 16px;
+  --font-size-md: 20px;
+  --font-size-lg: 28px;
+  --font-size-xl: 36px;
+  --font-size-xxl: 48px;
+  --font-size-title: 64px;
+  
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+  
+  /* Spacing - Pixel Perfect */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-giant: 64px;
+  
+  /* Animations - Retro Timing */
+  --transition-quick: 0.1s ease-out;
+  --transition-normal: 0.2s ease-out;
+  --transition-slow: 0.4s ease-out;
+  --transition-bounce: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Game specific measurements */
+  --button-height-sm: 48px;
+  --button-height-md: 64px;
+  --button-height-lg: 80px;
+  --button-width-sm: 160px;
+  --button-width-md: 200px;
+  --button-width-lg: 240px;
+  --input-height: 56px;
+  --container-max-width: 1400px;
+  
+  /* Neon Effects - Enhanced Glow */
+  --glow-blue: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue);
+  --glow-purple: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple), 0 0 30px var(--neon-purple);
+  --glow-yellow: 0 0 10px var(--neon-yellow), 0 0 20px var(--neon-yellow), 0 0 30px var(--neon-yellow);
+  --glow-white: 0 0 10px var(--neon-white), 0 0 20px var(--neon-white);
+  
+  --neon-blue-border: 0 0 5px var(--neon-blue), 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue-glow);
+  --neon-purple-border: 0 0 5px var(--neon-purple), 0 0 15px var(--neon-purple), 0 0 30px var(--neon-purple-glow);
+  --neon-yellow-border: 0 0 5px var(--neon-yellow), 0 0 15px var(--neon-yellow), 0 0 30px var(--neon-yellow-glow);
+  
+  --neon-text: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  
+  /* Scanlines and CRT Effects */
+  --scanline-opacity: 0.1;
+  --crt-curvature: 2px;
+}

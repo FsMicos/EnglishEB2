@@ -1,22 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game - Snakes & Ladders English Quiz</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Snakes & Ladders - English Quiz Game</title>
+    <link rel="stylesheet" href="css/game-panel.css">
 </head>
+
 <body>
     <div class="game-container">
-        <div style="text-align: center; padding: 2rem;">
-            <h1 class="game-title">Game Starting Soon...</h1>
-            <p style="font-size: 18px; margin: 20px 0;">
-                This is where the actual quiz game will be implemented.
-            </p>
-            <button class="game-btn btn-secondary" onclick="window.location.href='/'">
-                Back to Main Menu
-            </button>
+        <div class="game-board" id="gameBoard"></div>
+
+        <div class="right-panel">
+            <div class="dice-container">
+                <div class="dice" id="dice"></div>
+                <div class="game-status" id="gameStatus">¡Roll the dice to start!!</div>
+            </div>
+
+            <div class="players-section">
+                <div class="players-title">PLAYER</div>
+                <div id="player1">
+                    <div class="player-icon"></div>
+                    <div class="player-name"></div>
+                </div>
+            </div>
+
+            <div class="stats-panel">
+                <div class="current-position" id="currentPosition">Position: 0/100</div>
+                <div class="stats-title">Progress </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div style="text-align: center; margin-bottom: 15px;">
+                    <span id="progressText">0/100</span>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">CORRECTS</div>
+                        <div class="stat-value correct-answers" id="correctCount">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">INCORRECTS</div>
+                        <div class="stat-value incorrect-answers" id="incorrectCount">0</div>
+                    </div>
+                </div>
+            </div>
+            <div class="controls-section">
+                <div class="control-buttons">
+                    <button class="pause-btn" id="pauseBtn">⏸PAUSE</button>
+                    <button class="secondary-btn" onclick="goHome()">⌂</button>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Modal de Pregunta -->
+    <div class="question-modal" id="questionModal">
+        <div class="modal-content">
+            <h2 class="question-title">🧠 Question</h2>
+            <p class="question-text" id="questionText"></p>
+            <div class="options" id="optionsContainer"></div>
+            <button class="submit-btn" id="submitBtn" disabled>Responder</button>
+        </div>
+    </div>
+
+    <!-- Modal de Victoria -->
+    <div class="win-modal" id="winModal">
+        <div class="win-content">
+            <div class="celebration">🎉</div>
+            <h2>CONGRATULATION!</h2>
+            <p>¡You've completed the game.!</p>
+            <div style="margin: 20px 0;">
+                <div>Correct Answers: <span id="finalCorrect">0</span></div>
+                <div>Incorrect Answers: <span id="finalIncorrect">0</span></div>
+            </div>
+            <button class="submit-btn" onclick="resetGame()">Play Again</button>
+        </div>
+    </div>
+    <div class="pause-modal" id="pauseModal">
+        <div class="pause-content">
+            <div class="pause-icon">⏸</div>
+            <h2 class="pause-title">PAUSE</h2>
+            <div class="pause-buttons">
+                <button class="resume-btn" id="resumeBtn">▶ RESUME</button>
+                <button class="home-btn" onclick="goHome()">⌂ HOME</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/game-state.js"></script>
+    <script src="js/game-panel.js"></script>
+    <script src="js/game-board.js"></script>
+
 </body>
+
 </html>

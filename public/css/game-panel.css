@@ -57,8 +57,8 @@ body::before {
 /* Game Board Section */
 .game-board {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
     gap: 2px;
     width: 95%;
     height: 95%;
@@ -678,18 +678,116 @@ body::before {
     border-color: var(--neon-pink);
     box-shadow: var(--glow-pink);
     color: var(--neon-pink);
-    text-shadow: var(--glow-pink);
-    animation: pause-pulse 2s ease-in-out infinite alternate;
 }
 
-@keyframes pause-pulse {
-    0% {
-        box-shadow: var(--glow-pink);
-    }
+/* ===== ESTILOS PARA CONTROLES DE VOZ ===== */
 
-    100% {
-        box-shadow: var(--glow-purple);
-    }
+.voice-btn {
+    padding: 10px 15px;
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.9), rgba(39, 174, 96, 0.8));
+    border: 2px solid var(--neon-green);
+    border-radius: var(--border-radius-retro);
+    color: var(--neon-white);
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-family-retro);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: var(--glow-green);
+    text-shadow: var(--glow-white);
+    position: relative;
+    overflow: hidden;
+    min-width: 50px;
+    font-size: 1.2rem;
+}
+
+.voice-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.voice-btn:hover {
+    border-color: var(--neon-blue);
+    box-shadow: var(--glow-blue);
+    color: var(--neon-blue);
+    text-shadow: var(--glow-blue);
+    transform: translateY(-1px);
+}
+
+.voice-btn:hover::before {
+    left: 100%;
+}
+
+.voice-btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: var(--glow-green);
+}
+
+.voice-btn.disabled {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.9), rgba(192, 57, 43, 0.8));
+    border-color: var(--neon-red);
+    box-shadow: var(--glow-red);
+    color: var(--neon-red);
+}
+
+/* Controles de voz en el modal de pregunta */
+.voice-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.voice-control-btn {
+    padding: 8px 12px;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.8));
+    border: 2px solid var(--neon-blue);
+    border-radius: var(--border-radius-retro);
+    color: var(--neon-white);
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-family-retro);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: var(--glow-blue);
+    text-shadow: var(--glow-white);
+    position: relative;
+    overflow: hidden;
+    min-width: 40px;
+    font-size: 1rem;
+}
+
+.voice-control-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.voice-control-btn:hover {
+    border-color: var(--neon-yellow);
+    box-shadow: var(--glow-yellow);
+    color: var(--neon-yellow);
+    text-shadow: var(--glow-yellow);
+    transform: translateY(-1px);
+}
+
+.voice-control-btn:hover::before {
+    left: 100%;
+}
+
+.voice-control-btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: var(--glow-blue);
 }
 
 /* Pause Modal - NUEVO */
@@ -1296,12 +1394,6 @@ body::before {
     .option {
         padding: calc(var(--spacing-sm) * 0.75);
         font-size: calc(var(--font-size-sm) * 0.85);
-    }
-
-    .submit-btn {
-        height: calc(var(--button-height-md) * 0.9);
-        font-size: var(--font-size-sm);
-        letter-spacing: 1px;
     }
 
     /* Pause Modal - NUEVO */

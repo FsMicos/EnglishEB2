@@ -8,120 +8,19 @@ class GamePanel {
         this.gameWon = false;
         this.isPaused = false;
 
-        // Configuración del tablero
+        // Configuración del tablero 8x8 (64 casillas)
         this.snakes = {
-            98: 78, 95: 75, 92: 88, 87: 24, 83: 19,
-            73: 53, 69: 33, 64: 60, 62: 19, 56: 53,
-            49: 11, 47: 26, 16: 6
+            62: 19, 56: 33, 49: 11, 47: 26, 
+            43: 18, 39: 21, 35: 7, 30: 12
         };
 
         this.ladders = {
-            2: 38, 4: 14, 9: 21, 21: 42, 28: 84,
-            36: 44, 51: 67, 71: 91, 80: 100
+            2: 25, 4: 14, 9: 31, 20: 42, 
+            28: 48, 36: 57, 51: 60
         };
 
-        this.questions = [
-            {
-                question: "Which sentence is grammatically correct?",
-                options: [
-                    "She suggested me to take the test again.",
-                    "She suggested that I take the test again.",
-                    "She suggested that I took the test again.",
-                    "She suggested me that I take the test again."
-                ],
-                correct: 1
-            },
-            {
-                question: "Identify the correct use of the past perfect tense.",
-                options: [
-                    "By the time he arrived, the show started.",
-                    "By the time he arrived, the show has started.",
-                    "By the time he arrived, the show had started.",
-                    "By the time he arrived, the show will have started."
-                ],
-                correct: 2
-            },
-            {
-                question: "Which sentence uses a **reduced relative clause** correctly?",
-                options: [
-                    "The students who were studying late passed the exam.",
-                    "The students studying late passed the exam.",
-                    "The students studied late passed the exam.",
-                    "The students who studying late passed the exam."
-                ],
-                correct: 1
-            },
-            {
-                question: "Choose the correct form of the conditional sentence:",
-                options: [
-                    "If I would have seen her, I would have said hello.",
-                    "If I had seen her, I would have said hello.",
-                    "If I saw her, I would had said hello.",
-                    "If I see her, I would have said hello."
-                ],
-                correct: 1
-            },
-            {
-                question: "Which sentence uses **inversion** for emphasis correctly?",
-                options: [
-                    "Rarely I have seen such talent.",
-                    "Rarely have I seen such talent.",
-                    "Rarely seen I such talent.",
-                    "Rarely have seen I such talent."
-                ],
-                correct: 1
-            },
-            {
-                question: "Choose the correct sentence using **modal verbs in the past**:",
-                options: [
-                    "He must gone to the meeting.",
-                    "He must have gone to the meeting.",
-                    "He must has gone to the meeting.",
-                    "He must had gone to the meeting."
-                ],
-                correct: 1
-            },
-            {
-                question: "Identify the correct **use of a participle clause**:",
-                options: [
-                    "Walking through the park, a tree fell on me.",
-                    "Walking through the park, I saw a squirrel.",
-                    "Walking through the park, the birds were loud.",
-                    "Walking through the park, the wind blew hard."
-                ],
-                correct: 1
-            },
-            {
-                question: "Which sentence is an example of a **cleft sentence** for emphasis?",
-                options: [
-                    "I only saw her at the party.",
-                    "It was her that I saw at the party.",
-                    "At the party I saw her.",
-                    "She was at the party I saw."
-                ],
-                correct: 1
-            },
-            {
-                question: "Which is the correct **reported speech** form?",
-                options: [
-                    "He said he will call me later.",
-                    "He said he would call me later.",
-                    "He said he calls me later.",
-                    "He said he called me later."
-                ],
-                correct: 1
-            },
-            {
-                question: "Choose the grammatically correct sentence with a **noun clause**:",
-                options: [
-                    "What he said it was interesting.",
-                    "What did he say was interesting.",
-                    "What he said was interesting.",
-                    "That he said was interesting."
-                ],
-                correct: 2
-            }
-        ];
+        // Las preguntas ahora se cargan desde el archivo questions.js
+        this.questions = getAllQuestions();
 
         this.init();
     }
@@ -136,11 +35,11 @@ class GamePanel {
         const board = document.getElementById('gameBoard');
         board.innerHTML = '';
 
-        for (let row = 9; row >= 0; row--) {
-            for (let col = 0; col < 10; col++) {
+        for (let row = 7; row >= 0; row--) {
+            for (let col = 0; col < 8; col++) {
                 const cellNumber = row % 2 === 1 ?
-                    row * 10 + (10 - col) :
-                    row * 10 + col + 1;
+                    row * 8 + (8 - col) :
+                    row * 8 + col + 1;
 
                 const cell = document.createElement('div');
                 cell.className = 'cell';
@@ -151,9 +50,9 @@ class GamePanel {
                 if (cellNumber === 1) {
                     cell.classList.add('start');
                     cell.innerHTML = '🏁<br>1';
-                } else if (cellNumber === 100) {
+                } else if (cellNumber === 64) {
                     cell.classList.add('finish');
-                    cell.innerHTML = '🏆<br>100';
+                    cell.innerHTML = '🏆<br>64';
                 } else if (this.snakes[cellNumber]) {
                     cell.classList.add('snake');
                     cell.innerHTML = `🐍<br>${cellNumber}`;
@@ -192,6 +91,12 @@ class GamePanel {
         document.getElementById('dice').addEventListener('click', () => this.rollDice());
         document.getElementById('submitBtn').addEventListener('click', () => this.submitAnswer());
         document.getElementById('pauseBtn').addEventListener('click', () => this.togglePause());
+
+
+        // Controles de voz
+        document.getElementById('voiceToggleBtn').addEventListener('click', () => this.toggleVoiceReading());
+        document.getElementById('repeatQuestionBtn').addEventListener('click', () => this.repeatQuestion());
+        document.getElementById('stopSpeechBtn').addEventListener('click', () => this.stopSpeechReading());
 
 
         // Redimensionar token al cambiar tamaño de ventana
@@ -268,8 +173,8 @@ class GamePanel {
         const questionText = document.getElementById('questionText');
         const optionsContainer = document.getElementById('optionsContainer');
 
-        // Seleccionar pregunta aleatoria
-        const randomQuestion = this.questions[Math.floor(Math.random() * this.questions.length)];
+        // Seleccionar pregunta aleatoria usando la función del archivo questions.js
+        const randomQuestion = getRandomQuestion();
 
         questionText.textContent = randomQuestion.question;
         optionsContainer.innerHTML = '';
@@ -288,7 +193,14 @@ class GamePanel {
 
         document.getElementById('submitBtn').disabled = true;
         modal.style.display = 'flex';
-        setTimeout(() => modal.classList.add('show'), 10);
+        setTimeout(() => {
+            modal.classList.add('show');
+            
+            // Leer la pregunta en voz alta después de mostrar el modal
+            setTimeout(() => {
+                readQuestion(randomQuestion);
+            }, 500);
+        }, 10);
     }
 
     selectOption(index, button) {
@@ -299,10 +211,18 @@ class GamePanel {
         button.classList.add('selected');
         this.selectedOption = index;
         document.getElementById('submitBtn').disabled = false;
+        
+        // Leer la opción seleccionada en voz alta
+        if (this.currentQuestion && isVoiceEnabled()) {
+            readOption(this.currentQuestion, index);
+        }
     }
 
     submitAnswer() {
         if (this.selectedOption === null) return;
+
+        // Detener la lectura de voz cuando se envía la respuesta
+        stopSpeech();
 
         const isCorrect = this.selectedOption === this.currentQuestion.correct;
 
@@ -345,7 +265,7 @@ class GamePanel {
 
     movePlayer(spaces) {
         const oldPosition = this.currentPosition;
-        this.currentPosition = Math.min(this.currentPosition + spaces, 100);
+        this.currentPosition = Math.min(this.currentPosition + spaces, 64);
 
         // Verificar serpientes y escaleras
         if (this.snakes[this.currentPosition]) {
@@ -365,8 +285,8 @@ class GamePanel {
         }
 
         // Verificar victoria
-        if (this.currentPosition >= 100) {
-            this.currentPosition = 100;
+        if (this.currentPosition >= 64) {
+            this.currentPosition = 64;
             setTimeout(() => this.showWinScreen(), 1500);
         }
     }
@@ -390,15 +310,15 @@ class GamePanel {
 
     updateDisplay() {
         // Actualizar posición
-        document.getElementById('currentPosition').textContent = `Positionn: ${this.currentPosition}/100`;
+        document.getElementById('currentPosition').textContent = `Positionn: ${this.currentPosition}/64`;
 
         // Actualizar progreso
         const progressFill = document.getElementById('progressFill');
         const progressText = document.getElementById('progressText');
-        const percentage = (this.currentPosition / 100) * 100;
+        const percentage = (this.currentPosition / 64) * 100;
 
         progressFill.style.width = percentage + '%';
-        progressText.textContent = `${this.currentPosition}/100`;
+        progressText.textContent = `${this.currentPosition}/64`;
 
         // Actualizar estadísticas
         document.getElementById('correctCount').textContent = this.correctAnswers;
@@ -448,6 +368,35 @@ class GamePanel {
                 ? 'linear-gradient(135deg, rgba(46, 204, 113, 0.9), rgba(39, 174, 96, 0.8))'
                 : 'linear-gradient(135deg, rgba(241, 196, 15, 0.9), rgba(243, 156, 18, 0.8))';
         }
+    }
+
+    // ===== MÉTODOS PARA CONTROL DE VOZ =====
+
+    toggleVoiceReading() {
+        const isEnabled = toggleVoice();
+        const btn = document.getElementById('voiceToggleBtn');
+        
+        if (btn) {
+            btn.textContent = isEnabled ? '🔊' : '🔇';
+            btn.title = isEnabled ? 'Disable voice reading' : 'Enable voice reading';
+        }
+        
+        // Mostrar feedback visual
+        this.showFeedback(
+            isEnabled ? 'Voice reading enabled' : 'Voice reading disabled',
+            isEnabled ? 'success' : 'warning'
+        );
+    }
+
+    repeatQuestion() {
+        if (this.currentQuestion) {
+            readQuestion(this.currentQuestion);
+        }
+    }
+
+    stopSpeechReading() {
+        stopSpeech();
+        this.showFeedback('Voice reading stopped', 'warning');
     }
 
 }

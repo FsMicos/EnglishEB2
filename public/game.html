@@ -27,13 +27,13 @@
             </div>
 
             <div class="stats-panel">
-                <div class="current-position" id="currentPosition">Position: 0/100</div>
+                <div class="current-position" id="currentPosition">Position: 0/64</div>
                 <div class="stats-title">Progress </div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
                 <div style="text-align: center; margin-bottom: 15px;">
-                    <span id="progressText">0/100</span>
+                    <span id="progressText">0/64</span>
                 </div>
                 <div class="stats-grid">
                     <div class="stat-item">
@@ -49,6 +49,7 @@
             <div class="controls-section">
                 <div class="control-buttons">
                     <button class="pause-btn" id="pauseBtn">⏸PAUSE</button>
+                    <button class="voice-btn" id="voiceToggleBtn" title="Toggle voice reading">🔊</button>
                     <button class="secondary-btn" onclick="goHome()">⌂</button>
                 </div>
             </div>
@@ -60,6 +61,10 @@
         <div class="modal-content">
             <h2 class="question-title">🧠 Question</h2>
             <p class="question-text" id="questionText"></p>
+            <div class="voice-controls">
+                <button class="voice-control-btn" id="repeatQuestionBtn" title="Repeat question">🔄</button>
+                <button class="voice-control-btn" id="stopSpeechBtn" title="Stop reading">🔇</button>
+            </div>
             <div class="options" id="optionsContainer"></div>
             <button class="submit-btn" id="submitBtn" disabled>Responder</button>
         </div>
@@ -90,6 +95,7 @@
     </div>
 
     <script src="js/game-state.js"></script>
+    <script src="js/questions.js"></script>
     <script src="js/game-panel.js"></script>
     <script src="js/game-board.js"></script>
 

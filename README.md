@@ -35,6 +35,95 @@ A retro-style English quiz game built with Node.js, featuring a Snakes & Ladders
    http://localhost:3000
    ```
 
+## Deployment to Vercel
+
+This application is configured for easy deployment to Vercel. You can deploy using either the web interface or CLI:
+
+### Option 1: Deploy from Vercel Web Dashboard (Recommended)
+
+1. **Push your code to GitHub**:
+   - Create a new repository on GitHub
+   - Push your local code to the repository:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+   git push -u origin main
+   ```
+
+2. **Deploy on Vercel**:
+   - Go to [vercel.com](https://vercel.com)
+   - Sign up/Login with your GitHub account
+   - Click "New Project"
+   - Import your GitHub repository
+   - Vercel will auto-detect it's a Node.js project
+   - Click "Deploy"
+
+3. **Configuration** (automatic):
+   - Build Command: `npm run build`
+   - Output Directory: `public` (auto-detected)
+   - Install Command: `npm install`
+   - Root Directory: `./`
+
+### Option 2: Deploy using Vercel CLI
+
+1. **Install Vercel CLI** (if not already installed):
+   ```bash
+   npm install -g vercel
+   ```
+
+2. **Login to Vercel**:
+   ```bash
+   vercel login
+   ```
+
+3. **Deploy to Vercel**:
+   ```bash
+   vercel
+   ```
+   
+   Follow the prompts:
+   - Set up and deploy? `Y`
+   - Which scope? Choose your account
+   - Link to existing project? `N` (for first deployment)
+   - What's your project's name? `englisheb2` (or your preferred name)
+   - In which directory is your code located? `./`
+
+4. **Production deployment**:
+   ```bash
+   vercel --prod
+   ```
+
+### Vercel Configuration Files:
+
+- `vercel.json`: Deployment configuration
+- `.vercelignore`: Files to exclude from deployment
+- `.env.example`: Environment variables template
+
+### Environment Variables:
+
+If you need to set environment variables in Vercel:
+1. Go to your project dashboard on Vercel
+2. Navigate to Settings → Environment Variables
+3. Add any required environment variables
+
+### Troubleshooting Common Issues:
+
+**404 Error on Game Routes:**
+If you get a 404 error when clicking "Play" or navigating to `/game`:
+1. Make sure the `vercel.json` file is properly configured
+2. Redeploy the project after making changes
+3. Check that all routes are properly defined in `server.js`
+4. Verify that `game.html` exists in the `public` folder
+
+**Static Files Not Loading:**
+If CSS, JS, or images don't load:
+1. Check that the file paths in HTML are relative (no leading `/`)
+2. Verify the `vercel.json` routes for static assets
+3. Ensure files are in the correct `public` folder structure
+
 ## Adding Images
 
 To complete the visual experience, add these images to the `public/assets/images/` folder:

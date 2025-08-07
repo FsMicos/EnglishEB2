@@ -137,6 +137,11 @@ The app uses multiple navigation strategies for maximum compatibility:
 2. Wait 5-10 minutes for Vercel's cache to update
 3. Force-refresh Vercel's deployment (in Vercel dashboard → Deployments → Latest → Redeploy)
 
+**Common Vercel Deployment Errors:**
+- `The property 'functions' cannot be used with the property 'builds'`: This indicates a configuration conflict in vercel.json. Make sure to use either `functions` or `builds`, but not both together.
+- `404 Not Found` errors: Check that all static files are properly configured in vercel.json routes.
+- Long-running server issues: Serverless functions have a timeout limit, make sure server responses are efficient.
+
 ## Adding Images
 
 To complete the visual experience, add these images to the `public/assets/images/` folder:

@@ -3,7 +3,13 @@ const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
 
+// Create Express app with optimized settings for Vercel
 const app = express();
+// Set timeout to prevent serverless function timeouts
+if (process.env.VERCEL) {
+    app.set('etag', false);
+    app.set('trust proxy', true);
+}
 const PORT = process.env.PORT || 3000;
 
 // Middleware

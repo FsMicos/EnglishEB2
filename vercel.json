@@ -12,6 +12,16 @@
   ],
   "routes": [
     {
+      "src": "/game",
+      "dest": "/public/game.html",
+      "status": 200
+    },
+    {
+      "src": "/settings",
+      "dest": "/public/settings.html",
+      "status": 200
+    },
+    {
       "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|ico|svg|html))",
       "dest": "/public/$1"
     },
@@ -26,10 +36,6 @@
     {
       "src": "/js/(.*)",
       "dest": "/public/js/$1"
-    },
-    {
-      "src": "/game.html",
-      "dest": "/public/game.html"
     },
     {
       "src": "/api/(.*)",

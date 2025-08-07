@@ -126,10 +126,16 @@ If CSS, JS, or images don't load:
 4. Check Vercel deployment logs for any build errors
 
 **Navigation Issues:**
-The app now uses client-side navigation:
-- Main screen → Game: `./game.html`
-- All assets use relative paths
-- Server routes (`/api/*`) are only for future API endpoints
+The app uses multiple navigation strategies for maximum compatibility:
+- Direct HTML links: `./game.html`
+- URL rewrites in vercel.json: `/game` → `/public/game.html`
+- Client-side redirection with redirect.js
+- Custom 404.html handling for fallback redirection
+
+**Important**: After deploying to Vercel, you may need to:
+1. Clear browser cache completely
+2. Wait 5-10 minutes for Vercel's cache to update
+3. Force-refresh Vercel's deployment (in Vercel dashboard → Deployments → Latest → Redeploy)
 
 ## Adding Images
 

@@ -112,17 +112,24 @@ If you need to set environment variables in Vercel:
 ### Troubleshooting Common Issues:
 
 **404 Error on Game Routes:**
-If you get a 404 error when clicking "Play" or navigating to `/game`:
-1. Make sure the `vercel.json` file is properly configured
-2. Redeploy the project after making changes
-3. Check that all routes are properly defined in `server.js`
-4. Verify that `game.html` exists in the `public` folder
+If you get a 404 error when clicking "Play":
+1. The app now uses direct HTML navigation (`game.html`) instead of server routes
+2. Make sure the `vercel.json` file is properly configured for static files
+3. Redeploy the project after making changes
+4. Check browser developer tools for any path errors
 
 **Static Files Not Loading:**
 If CSS, JS, or images don't load:
-1. Check that the file paths in HTML are relative (no leading `/`)
-2. Verify the `vercel.json` routes for static assets
-3. Ensure files are in the correct `public` folder structure
+1. Verify all file paths in HTML are relative (no leading `/`)
+2. Check that files exist in the correct `public` folder structure
+3. Clear browser cache and try again
+4. Check Vercel deployment logs for any build errors
+
+**Navigation Issues:**
+The app now uses client-side navigation:
+- Main screen → Game: `./game.html`
+- All assets use relative paths
+- Server routes (`/api/*`) are only for future API endpoints
 
 ## Adding Images
 

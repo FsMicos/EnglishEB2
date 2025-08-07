@@ -16,23 +16,19 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Game routes
-app.get('/game', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'game.html'));
-});
-
-app.get('/settings', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'settings.html'));
-});
-
-// API routes (for future use)
+// API routes
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', message: 'Server is running' });
 });
 
-// Catch all handler: send back React's index.html file for client-side routing
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// API endpoint for game state (future use)
+app.get('/api/game-state', (req, res) => {
+    res.json({ message: 'Game state endpoint' });
+});
+
+// API endpoint for leaderboard (future use)
+app.get('/api/leaderboard', (req, res) => {
+    res.json({ message: 'Leaderboard endpoint' });
 });
 
 // Start server (for local development)

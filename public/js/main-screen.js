@@ -410,7 +410,8 @@ class MainScreen {
     }
 
     navigateToGame() {
-        window.location.href = '/game';
+        // Navigate directly to the game.html file instead of using server routes
+        window.location.href = './game.html';
     }
 
     // Sound methods (placeholders for actual sound implementation)

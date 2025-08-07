@@ -1,0 +1,21 @@
+# Vercel Static Website Configuration
+# This file helps Vercel understand the project structure
+
+# Serve public folder as static content
+trailingSlash: false
+cleanUrls: true
+
+# Headers for static files
+headers:
+  - source: "/(.*)"
+    headers:
+      - key: "Cache-Control"
+        value: "public, max-age=86400"
+  - source: "/css/(.*)"
+    headers:
+      - key: "Cache-Control"
+        value: "public, max-age=31536000"
+  - source: "/js/(.*)"
+    headers:
+      - key: "Cache-Control"
+        value: "public, max-age=31536000"
